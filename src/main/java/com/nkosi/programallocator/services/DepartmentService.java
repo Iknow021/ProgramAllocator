@@ -5,6 +5,7 @@ import com.nkosi.programallocator.exceptions.DataNotFoundException;
 import com.nkosi.programallocator.models.Department;
 import com.nkosi.programallocator.models.Faculty;
 import com.nkosi.programallocator.repositories.DepartmentRepository;
+import com.nkosi.programallocator.utils.CodeGeneratorUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class DepartmentService {
 
     private final DepartmentRepository departmentRepository;
     private final FacultyService facultyService;
+    private final CodeGeneratorUtil codeGeneratorUtil;
 
 
     public Department addDepartment(String facultyCode,DepartmentDto departmentDto){
@@ -21,7 +23,7 @@ public class DepartmentService {
         Faculty faculty = facultyService.getFaculty(facultyCode);
 
         return departmentRepository.save(Department.builder()
-                .departmentCode(departmentDto.getDepartmentCode())//to create util to auto generate dptCode
+                .departmentCode(codeGeneratorUtil.generateDepartmentID(departmentDto.getDepartmentName()))//to create util to auto generate dptCode
                 .departmentName(departmentDto.getDepartmentName())
                 .faculty(faculty)
                 .build()

@@ -31,13 +31,16 @@ public class Program implements Serializable {
     private Boolean isVacant;
     @Column(name = "cut_off_points")
     private Integer cutOffPoints;
+
     @Column(name = "required_Subjects")
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     private List<String> requiredSubjects;
+
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false, foreignKey = @ForeignKey(name = "department_id_FK"), referencedColumnName = "department_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Department department;
+
     @OneToMany(mappedBy = "program")
     @ToString.Exclude
     private List<Applicant> applicants;

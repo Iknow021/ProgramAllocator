@@ -25,15 +25,15 @@ public class CodeGeneratorUtil {
         return id.toString();
     }
 
-    public static String generateProgramID(String name) {
+    public  String generateProgramID(String name) {
         return getCode(name);
     }
 
-    public static String generateFacultyID(String name) {
+    public  String generateFacultyID(String name) {
         return getCode(name);
     }
 
-    public static String generateDepartmentID(String name) {
+    public String generateDepartmentID(String name) {
         return getCode(name);
     }
 

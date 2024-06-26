@@ -25,14 +25,17 @@ public class ProgramService {
     private final CodeGeneratorUtil codeGeneratorUtil;
 
 
-    public Program addProgram(String departmentCode, ProgramDto programDto){
+    public Program addProgram(String departmentCode, ProgramDto programDto) {
 
         Department department = departmentService.getDepartment(departmentCode);
 
         return programRepository.save(Program.builder()
-                .programCode(programDto.getProgramCode())
+                .programCode(codeGeneratorUtil.generateProgramID(programDto.getProgramName()))
                 .programName(programDto.getProgramName())
+                .cutOffPoints(programDto.getCutOffPoints())
+                .requiredSubjects(programDto.getRequiredSubjects())
                 .department(department)
+                .isVacant(programDto.getIsVacant())
                 .build()
         );
     }
@@ -120,8 +123,9 @@ public class ProgramService {
         program.setApplicants(List.of(applicant));
         applicant.setIsAllocated(true);
         applicant.setStudentCode(codeGeneratorUtil.generateStudentID());
-        programRepository.save(program);
-        applicantService.updateApplicantStatus(applicant,true);
+        Program savedProgram = programRepository.save(program);
+        applicant.setProgram(savedProgram);
+        applicantService.updateApplicantStatus(applicant, true);
     }
 
     private void suggestAlternativeProgram(Applicant applicant, List<Program> programs) {

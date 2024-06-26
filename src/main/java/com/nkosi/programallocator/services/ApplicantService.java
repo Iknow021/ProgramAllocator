@@ -23,6 +23,8 @@ public class ApplicantService {
                 .points(applicantDto.getPoints())
                 .facultyOfInterest(applicantDto.getFacultyOfInterest().name())
                 .previousSchool(applicantDto.getPreviousSchool())
+                .subjects(applicantDto.getSubjects())
+                .programsOfInterest(applicantDto.getProgramsOfInterest())
                 .isAllocated(false)
                 .build()
         );
