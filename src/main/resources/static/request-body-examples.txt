@@ -1,0 +1,28 @@
+program:::{
+"programName":"Bachelor of Science Honours Degree in Biotechnology",
+"isVacant": true,
+"cutOffPoints": 10,
+"requiredSubjects":[
+    "Biology",
+    "Chemistry"]
+}
+
+//
+
+applicant:::{
+    "firstname":"John",
+    "lastname":"Doe",
+    "combination":"Sciences",
+    "points":10,
+    "previousSchool":"SAHS",
+    "facultyOfInterest":"APPLIED_SCIENCE",
+    "programsOfInterest":[
+        "Bachelor of Science Honours Degree in Applied Biology and Biochemistry",
+        "Bachelor of Science Honours Degree in Biotechnology"
+
+    ],
+    "subjects":[
+        "Biology","Chemistry"
+]
+}
+
