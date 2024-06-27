@@ -17,7 +17,7 @@ public class FacultyService {
 
 
     public Faculty addFaculty(FacultyDto facultyDto){
-
+        //save faculty info to the database
         return facultyRepository.save(Faculty.builder()
                 .facultyCode(codeGeneratorUtil.generateFacultyID(facultyDto.getFacultyName()))
                 .facultyName(facultyDto.getFacultyName())
@@ -26,8 +26,9 @@ public class FacultyService {
 
     }
 
-    public Faculty getFaculty(String facultyCode){
 
+    public Faculty getFaculty(String facultyCode){
+        //fetch faculty by code else throw exception if not found
         return facultyRepository.findByFacultyCode(facultyCode)
                 .orElseThrow(() ->
                         new DataNotFoundException("Failed to find department with the given facultyCode"

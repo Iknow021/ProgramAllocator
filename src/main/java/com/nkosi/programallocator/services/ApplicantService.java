@@ -14,8 +14,8 @@ public class ApplicantService {
 
     private final ApplicantRepository applicantRepository;
 
-    public Applicant registerApplicant(ApplicantDto applicantDto){
-
+    public Applicant registerApplicant(ApplicantDto applicantDto) {
+        //save applicant details to the database
         return applicantRepository.save(Applicant.builder()
                 .firstname(applicantDto.getFirstname())
                 .lastname(applicantDto.getLastname())
@@ -30,12 +30,14 @@ public class ApplicantService {
         );
     }
 
-    public List<Applicant> getAllUnAllocatedApplicants(){
+    //Fetch applicants that haven't been allocated any program
+    public List<Applicant> getAllUnAllocatedApplicants() {
         return applicantRepository.findAllByIsAllocated(false);
     }
 
 
-    public void updateApplicantStatus(Applicant applicant,Boolean isAllocated) {
+    //Update isAllocated status after the applicant has been given a program
+    public void updateApplicantStatus(Applicant applicant, Boolean isAllocated) {
 
         applicant.setIsAllocated(isAllocated);
 

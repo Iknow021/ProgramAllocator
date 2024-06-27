@@ -19,9 +19,10 @@ public class DepartmentService {
 
 
     public Department addDepartment(String facultyCode,DepartmentDto departmentDto){
-
+       // first check if the faculty exists
         Faculty faculty = facultyService.getFaculty(facultyCode);
 
+        //save department information
         return departmentRepository.save(Department.builder()
                 .departmentCode(codeGeneratorUtil.generateDepartmentID(departmentDto.getDepartmentName()))//to create util to auto generate dptCode
                 .departmentName(departmentDto.getDepartmentName())
@@ -30,7 +31,7 @@ public class DepartmentService {
         );
     }
 
-
+   //fetch department by department code
     public Department getDepartment(String departmentCode){
         return departmentRepository.findByDepartmentCode(departmentCode)
                 .orElseThrow(() ->
