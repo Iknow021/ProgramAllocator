@@ -47,7 +47,7 @@ public class Applicant implements Serializable {
     @Column(name = "student_code")
     private String studentCode;
 
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "program_id", foreignKey = @ForeignKey(name = "program_id_FK"), referencedColumnName = "program_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
